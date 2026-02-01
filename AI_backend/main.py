@@ -247,9 +247,7 @@ async def analyze_resume(
                 "processing_time": "completed"
             }
         }
-        
-        # 5. Return Response
-        # The AI result already contains 'success', 'message', 'scores', etc.
+
         response_data = {
             "success": True,
             "message": "Analysis successful",
@@ -258,12 +256,11 @@ async def analyze_resume(
             "analysis_date": datetime.now().isoformat(),
             **analysis_result # Contains scores, structured_resume, analysis, etc.
         }
-        
-        # FastAPI will handle the JSON serialization
+    
         return response_data
 
     except HTTPException:
-        # Re-raise standard HTTP exceptions
+ 
         raise
     except Exception as e:
         logger.error(f"Analysis or File Handling error: {e}", exc_info=True)
